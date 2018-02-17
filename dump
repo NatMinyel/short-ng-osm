@@ -1,0 +1,23 @@
+ find closest
+  // if (e.lat <= this.xmlItems.osm.node[i].$.lat) {
+  //   // console.log("Found nearest", e.lat, this.xmlItems.osm.node[i].$.lat);
+  //   // console.log("Found nearest", e.lng, this.xmlItems.osm.node[i].$.lon);
+  //   // for (; e.lng <= this.xmlItems.osm.node[i].$.lon; i++);
+  //   console.log("IIIIII", i);
+  //   let id = this.xmlItems.osm.node[i].$.id, l = 0;
+  //   for (let j = 0; j < this.ways.length; j++) {
+  //     for (let k = 0; k < this.ways[j].nd.length; k++) {
+  //       if (id == this.ways[j].nd[k].$.ref) {
+  //         console.log("way", this.ways[j]);
+  //         way = this.ways[j];
+  //         l = 1;
+  //       }
+  //     }
+  //     if (l) {
+  //       console.log("broke");
+  //       break;
+  //     }
+  //   }
+  //   console.log("Finished");
+  //   return resolve({node: this.xmlItems.osm.node[i], way: way});
+  // }

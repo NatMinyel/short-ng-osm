@@ -1,0 +1,264 @@
+189 -         // let nodes = this.g.getVertices();
+              // let short = this.g.shortestPath(549977491, 549977493);
+              // console.log(short);
+              // this.drawPathArray(short);
+              // let edges = this.g.getEdges();
+              // for (let i = 0; i < short.length; i++) {
+              //   console.log(nodes[short[i]].info.$.lat);
+              //   this.baselayers.push(marker([nodes[short[i]].info.$.lat, nodes[short[i]].info.$.lon],
+              //     {
+              //       icon: icon({
+              //         iconSize: [25, 41],
+              //         iconAnchor: [13, 41],
+              //         iconUrl: 'assets/marker-icon.png',
+              //         shadowUrl: 'assets/marker-shadow.png'
+              //       })
+              //     }));
+              // }
+
+              // for (let i = 0; i < 10; i++) {
+              //   let line = polyline([[this.g.getVertices()[this.g.getEdges()[i].src].$.lat, this.g.getVertices()[this.g.getEdges()[i].src].$.lon], [this.g.getVertices()[this.g.getEdges()[i].dst].$.lat, this.g.getVertices()[this.g.getEdges()[i].dst].$.lon]],
+              //       {
+              //         color: "blue"
+              //       });
+              //   this.baselayers.push(line);
+              // }
+
+
+192 - / let len = this.nodes.length;
+              // this.baselayers.push();
+              // let l = 10;
+              // for (let i = 0; i < this.ways[l].nd.length; i++) {
+              //   let ref = this.ways[l].nd[i].$.ref;
+              //   for (let j = 0; j < len; j++) {
+              //     if (this.nodes[j].$.id == ref) {
+              //       console.log("Match found at ", this.nodes[j], last_node !== undefined);
+              //       if (last_node !== undefined) {
+              //         let line = polyline([[last_node.$.lat, last_node.$.lon], [this.nodes[j].$.lat, this.nodes[j].$.lon]],
+              //           {
+              //             color: 'green'
+              //           });
+              //         this.baselayers.push(line);
+              //       }
+              //       last_node = this.nodes[j];
+              //       console.log(last_node);
+              //     }
+              //   }
+              // }
+              // console.log(this.ways);
+              // for (;l < 16; l++) {
+              // if (l == 10)
+              // this.drawWay(this.ways[l+2], '#00FF00');
+              // else if (l == 11)
+              //   this.drawWay(this.ways[l], '#FFFF00');
+              // else if (l == 12)
+              //   this.drawWay(this.ways[l], '#FF00FF');
+              // else
+              //   this.drawWay(this.ways[l], '#FF0000');
+              // }
+
+286 - // searchNode_(e) {
+        //   return new Promise(resolve => {
+        //     console.log("This", this.xmlItems.osm);
+        //     let ways = [], closest = 0, min_dist = 999;
+        //     for (let i = 0; i < this.nodes.length; i++) {
+        //       let dist = Graph.distance(this.xmlItems.osm.node[i].$.lat, this.xmlItems.osm.node[i].$.lon, e.$.lat, e.$.lon);
+        //       if (dist < min_dist && this.xmlItems.osm.node[i]) {
+        //         min_dist = dist;
+        //         closest = i;
+        //       }
+        //     }
+        //
+        //     console.log(min_dist, this.nodes[closest]);
+        //     let id = this.nodes[closest].$.id, l = 0;
+        //     for (let j = 0; j < this.ways.length; j++) {
+        //       for (let k = 0; k < this.ways[j].nd.length; k++) {
+        //         if (id == this.ways[j].nd[k].$.ref) {
+        //           console.log("way", this.ways[j]);
+        //           ways.push(this.ways[j]);
+        //           l = 1;
+        //         }
+        //       }
+        //     }
+        //     console.log("Finished", ways);
+        //     return resolve({node: this.xmlItems.osm.node[closest], ways: ways});
+        //   });
+        // }
+
+221drawWay(way, color) {
+       // console.log("Drawing way", way.$.id);
+       let last_node;
+       for (let i = 0; i < way.nd.length; i++) {
+         let ref = way.nd[i].$.ref;
+         for (let j = 0; j < this.nodes.length; j++) {
+           if (this.nodes[j].$.id == ref) {
+             if (last_node !== undefined) {
+               let line = polyline([[last_node.$.lat, last_node.$.lon], [this.nodes[j].$.lat, this.nodes[j].$.lon]],
+                 {
+                   color: color
+                 });
+               this.baselayers.push(line);
+               // console.log('Layers', this.baselayers.length);
+             }
+             last_node = this.nodes[j];
+             // console.log(last_node);
+           }
+         }
+       }
+     }
+
+    // let vert, vertex;
+    // for(vertex in this.vertices) {
+    //   // console.log(this.vertices[vertex]['neighbors']);
+    //   if (this.vertices[vertex]['neighbors'].length == 0) {
+    //     let min_dist = this.infinity;
+    //     let closest;
+    //     for (vert in this.vertices) {
+    //       let dist = Graph.distance(this.vertices[vert].info.$.lat, this.vertices[vert].info.$.lon, this.vertices[vertex].info.$.lat, this.vertices[vertex].info.$.lon);
+    //       if (dist < min_dist && this.vertices[vert]['neighbors'].length != 0) {
+    //         min_dist = dist;
+    //         closest = vert;
+    //       }
+    //     }
+    //     // console.log(min_dist);
+    //     this.vertices[vertex]['neighbors'].push({"node": this.vertices[vert].info.$.id, "weight": min_dist});
+    //   }
+    // }
+
+318 - // let ways = [], closest = 0, min_dist = 999;
+            // for (let i = 0; i < this.nodes.length; i++) {
+            //   let dist = Graph.distance(this.xmlItems.osm.node[i].$.lat, this.xmlItems.osm.node[i].$.lon, e.lat, e.lng);
+            //   if (dist < min_dist && this.xmlItems.osm.node[i]) {
+            //     min_dist = dist;
+            //     closest = i;
+            //   }
+            // }
+            //
+            // // console.log(min_dist, this.nodes[closest]);
+            // let result = this.closestNodeFromWays(this.best_ways, this.nodes[closest]);
+            // this.searchNode_(result['closest']).then((res) => {
+            //   for (let i = 0; i < res['ways'].length; i++) {
+            //     console.log("YOODOODOOD");
+            //     this.drawWay(res['ways'][i], '#fff');
+            //   }
+            //   let result2 = this.closestNodeFromWays(res['ways'], this.nodes[closest]);
+            //   this.searchNode_(result2['closest']).then((resu) => {
+            //     for (let i = 0; i < resu['ways'].length; i++) {
+            //       // console.log("YOODOODOOD");
+            //       this.drawWay(resu['ways'][i], 'yellow');
+            //     }
+            //     let result3 = this.closestNodeFromWays(resu['ways'], this.nodes[closest]);
+            //     this.searchNode_(result3['closest']).then((resu) => {
+            //       for (let i = 0; i < resu['ways'].length; i++) {
+            //         // console.log("YOODOODOOD");
+            //         this.drawWay(resu['ways'][i], 'brown');
+            //       }
+            //     });
+            //   });
+            // });
+
+            closestNodeFromWays(ways, node) {
+                let min_dist = 100000;
+                let best_way, closest;
+                for (let i = 0; i < ways.length; i++) {
+                  console.log("Best Ways", min_dist);
+                  for (let j = 0; j < ways[i].nd.length; j++) {
+                    for (let k = 0; k < this.nodes.length; k++) {
+                      // console.log(ways[i].nd[j].$.ref, this.nodes[k].$.id);
+                      if (ways[i].nd[j].$.ref == this.nodes[k].$.id) {
+                        // console.log(node.$.lat, node.$.lon, this.nodes[k].$.lat, this.nodes[k].$.lon);
+                        let dist = Graph.distance(node.$.lat, node.$.lon, this.nodes[k].$.lat, this.nodes[k].$.lon);
+                        if (dist < min_dist && this.xmlItems.osm.node[k]) {
+                          min_dist = dist;
+                          closest = this.nodes[k];
+                          best_way = this.ways[i];
+                        }
+                        break;
+                      }
+                    }
+                  }
+                }
+
+                return {'closest': closest, 'best_way': best_way};
+              }
+
+
+              dijkstra(edges, source, target) {
+                const Q = new Set(),
+                  prev = {},
+                  dist = {},
+                  adj = {};
+
+                const vertex_with_min_dist = (Q, dist) => {
+                  let min_distance = Infinity,
+                    u = null;
+
+                  for (let v of Q) {
+                    if (dist[v] < min_distance) {
+                      min_distance = dist[v];
+                      u = v
+                    }
+                  }
+                  return u
+                };
+
+                for (let i = 0; i < edges.length; i++) {
+                  let v1 = edges[i]['src'],
+                    v2 = edges[i]['dst'],
+                    len = edges[i]['weight'];
+
+                  Q.add(v1);
+                  Q.add(v2);
+
+                  dist[v1] = Infinity;
+                  dist[v2] = Infinity;
+
+                  if (adj[v1] === undefined) adj[v1] = {};
+                  if (adj[v2] === undefined) adj[v2] = {};
+
+                  adj[v1][v2] = len;
+                  adj[v2][v1] = len;
+                }
+
+                dist[source] = 0
+
+                while (Q.size) {
+                  let u = vertex_with_min_dist(Q, dist),
+                    neighbors = Object.keys(adj[u]).filter(v => Q.has(v)) //Neighbor still in Q
+
+                  Q.delete(u);
+
+                  if (u === target) break; //Break when the target has been found
+
+                  for (let v of neighbors) {
+                    let alt = dist[u] + adj[u][v]
+                    if (alt < dist[v]) {
+                      dist[v] = alt
+                      prev[v] = u
+                    }
+                  }
+                }
+
+                {
+                  let u = target,
+                    S = [u],
+                    len = 0;
+
+                  while (prev[u] !== undefined) {
+                    S.unshift(prev[u]);
+                    len += adj[u][prev[u]];
+                    u = prev[u];
+                  }
+                  return [S, len]
+                }
+              }
+        // console.log("FFFF", nodes[curr].info.$.lat);
+        // this.baselayers.push(marker([nodes[curr].info.$.lat, nodes[curr].info.$.lon],
+        //       {
+        //         icon: icon({
+        //           iconSize: [25, 41],
+        //           iconAnchor: [13, 41],
+        //           iconUrl: 'assets/marker-icon.png',
+        //           shadowUrl: 'assets/marker-shadow.png'
+        //         })
+        //       }));

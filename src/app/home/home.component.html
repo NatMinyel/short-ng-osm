@@ -1,0 +1,10 @@
+<div>
+  <h2 style="text-align: center" id="title">Map</h2>
+  <div class="map"
+       leaflet
+       [leafletOptions]="options"
+       [leafletLayers]="baselayers"
+       [leafletCenter]="center"
+       (leafletMapReady)="onMapReady($event)">
+  </div>
+</div>
